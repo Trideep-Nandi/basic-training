@@ -1,0 +1,32 @@
+// Question 1
+const passwdRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=\w+\.\w+\.?)(?=.*[\!\#\$\%\&\'\*\+\-\/\=\?\^\_\`\{\|\}\~]).*[^\.]$/gm;
+
+// Question 2
+const emailRegex = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9_.+-]{2,}/gm
+
+// Question 3
+const creditCardRegex = /(?:\d{3,4}[\s-]?){3}\d{4}/gm;
+
+// Question 4
+const regex = /(?<phone>(?:\(?\+91\)?)?-?\d+-?\d+)|(?<email>[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9_.+-]{2,})/gm;
+const text = `Lorem ipsum dolor 9221122108 sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra ipsum nunc aliquet bibendum enim. In massa tempor nec feugiat. Nunc aliquet bibendum enim facilisis gravida. [mytraining@deqode.com](mailto:mytraining@deqode.com) Nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper. Amet luctus venenatis lectus magna fringilla. Volutpat maecenas volutpat blandit aliquam etiam erat velit scelerisque in. Egestas egestas fringilla phasellus faucibus scelerisque eleifend. +91-20200-21210 Sagittis orci a scelerisque purus semper eget duis. Nulla pharetra diam sit amet nisl suscipit. Sed adipiscing diam donec adipiscing tristique risus nec feugiat in. Fusce (+91)-20200-21210 ut placerat mt@test.inc orci nulla. Pharetra vel turpis nunc eget lorem dolor. Tristique senectus et netus et malesuada.`
+
+const phoneNumbers = []
+const emails = []
+function extractDetails (regex, text){
+    while (true)
+    {
+        const match = regex.exec(text);
+        if (match === null)
+            break;
+        const group = match.groups;
+        if (group.phone !== undefined)
+            phoneNumbers.push(group.phone)
+        if (group.email !== undefined)
+            emails.push(group.email)
+    }
+}
+
+extractDetails(regex, text);
+console.log(phoneNumbers);
+console.log(emails);
